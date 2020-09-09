@@ -7,7 +7,7 @@ language: cpp
 services:
   - docker
 arch:
-  - amd64
+        #- amd64
   - ppc64le
 env:
   global:
@@ -22,7 +22,7 @@ before_install:
   - export HOST_WORKDIR=`pwd`
   - cd utils/docker
   - ./pull-or-rebuild-image.sh
-  - if [ "$TRAVIS_CPU_ARCH" = "ppc64le" -a "$COVERAGE" = 1 ]; then docker rm -f $(docker ps -a -q); fi
+  - if [ "$TRAVIS_CPU_ARCH" = "ppc64le" -a "$COVERAGE" = 1 ]; then docker rm -vf $(docker ps -a -q); fi
 
 script:
   - ./build.sh
