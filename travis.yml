@@ -18,11 +18,12 @@ env:
     - OS=ubuntu OS_VER=19.10 TYPE=coverity
 
 before_install:
+  - if [ "$TRAVIS_CPU_ARCH" = "ppc64le" -a "$COVERAGE" = 1 ]; then docker container prune -f; fi
   - echo $TRAVIS_COMMIT_RANGE
   - export HOST_WORKDIR=`pwd`
   - cd utils/docker
   - ./pull-or-rebuild-image.sh
-  - if [ "$TRAVIS_CPU_ARCH" = "ppc64le" -a "$COVERAGE" = 1 ]; then docker container prune -f; fi
+    #- if [ "$TRAVIS_CPU_ARCH" = "ppc64le" -a "$COVERAGE" = 1 ]; then docker container prune -f; fi
 
 script:
   - ./build.sh
