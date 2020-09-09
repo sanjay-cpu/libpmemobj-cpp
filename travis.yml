@@ -24,8 +24,8 @@ before_install:
   - ./pull-or-rebuild-image.sh
 
 script:
-  - chmod +x build.sh
-  - /bin/bash ./build.sh
+  - ./build.sh
+    #yy  - chmod +x build.sh
 
 after_success:
   - source ./set-vars.sh
