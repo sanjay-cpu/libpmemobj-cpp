@@ -26,6 +26,7 @@ before_install:
 
 script:
   - ./build.sh
+    #yy  - chmod +x build.sh
 
 after_success:
   - source ./set-vars.sh

@@ -106,7 +106,7 @@ if [ -n "$DNS_SERVER" ]; then DNS_SETTING=" --dns=$DNS_SERVER "; fi
 [ -n "$GITHUB_ACTIONS" -o -n "$TRAVIS" ] && CI_RUN="YES" || CI_RUN="NO"
 
 # do not allocate a pseudo-TTY if we are running on GitHub Actions
-[ ! $GITHUB_ACTIONS ] && TTY='-t' || TTY=''
+[ ! $GITHUB_ACTIONS ] && TTY='-t' || TTY='';
 
 WORKDIR=/libpmemobj-cpp
 SCRIPTSDIR=$WORKDIR/utils/docker
@@ -117,7 +117,7 @@ echo Building on ${OS}-${OS_VER}
 #  - environment variables set (--env)
 #  - host directory containing source mounted (-v)
 #  - working directory set (-w)
-docker run --privileged=true --name=$containerName -i $TTY \
+docker run --privileged=true --name=$containerName -t \
 	$DNS_SETTING \
 	${docker_opts} \
 	--env http_proxy=$http_proxy \
