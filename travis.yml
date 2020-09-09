@@ -22,7 +22,7 @@ before_install:
   - export HOST_WORKDIR=`pwd`
   - cd utils/docker
   - ./pull-or-rebuild-image.sh
-  - if [ "$TRAVIS_CPU_ARCH" = "ppc64le" -a "$COVERAGE" = 1 ]; then docker container prune; fi
+  - if [ "$TRAVIS_CPU_ARCH" = "ppc64le" -a "$COVERAGE" = 1 ]; then docker container -y prune; fi
 
 script:
   - ./build.sh
